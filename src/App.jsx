@@ -82,6 +82,18 @@ const PROJECTS = [
     image: "/images/project-studynotion.svg",
     imageAlt: "Dashboard style illustration for the StudyNotion learning platform"
   },
+
+  {
+    title: "Collab Whiteboard",
+    description: "Real-time collaborative whiteboard for drawing and idea sharing with a smooth, interactive canvas experience.",
+    stack: ["React", "JavaScript", "Canvas", "Real-time Collaboration"],
+    github: "https://github.com/Anandkanil/collab-whiteboard",
+    live: "https://anand-whiteboard.netlify.app/",
+    color: "from-cyan-500 to-blue-500",
+    image: "/images/project-ecommerce.svg",
+    imageAlt: "Collaborative whiteboard illustration with sketch elements and shared canvas"
+  },
+
   {
     title: "Razorpay Landing Page Clone",
     description: "A pixel-perfect static clone of the official Razorpay website built using Tailwind CSS to demonstrate responsive design, layout mastery, and UI replication skills.",
