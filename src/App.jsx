@@ -90,7 +90,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/collab-whiteboard",
     live: "https://anand-whiteboard.netlify.app/",
     color: "from-cyan-500 to-blue-500",
-    image: "/images/project-ecommerce.svg",
+    image: "/images/project-collab-whiteboard.svg",
     imageAlt: "Collaborative whiteboard illustration with sketch elements and shared canvas"
   },
 
@@ -122,7 +122,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Sorting-Visualizer",
     live: "https://sortingvisualizeranandkanil.netlify.app/",
     color: "from-cyan-500 to-blue-500",
-    image: "/images/project-ecommerce.svg",
+    image: "/images/project-sorting-visualizer.svg",
     imageAlt: "Sorting visualizer illustration with animated bars and algorithm panels"
   },
   {
@@ -132,7 +132,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Shopping-Cart",
     live: "https://shopping-cart-anandkanil.netlify.app/",
     color: "from-blue-500 to-indigo-500",
-    image: "/images/project-ecommerce.svg",
+    image: "/images/project-shopping-cart.svg",
     imageAlt: "Shopping cart interface illustration with products and checkout summary"
   },
   {
@@ -142,7 +142,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Blogs",
     live: "https://blogsanandkanil.netlify.app/",
     color: "from-teal-500 to-cyan-500",
-    image: "/images/project-vegetable-store.svg",
+    image: "/images/project-blog-website.svg",
     imageAlt: "Blog website illustration with articles and reading layout"
   },
   {
@@ -152,7 +152,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Tour-Plan",
     live: "https://tourplananandkanil.netlify.app/",
     color: "from-blue-500 to-indigo-500",
-    image: "/images/project-vegetable-store.svg",
+    image: "/images/project-tour-planner.svg",
     imageAlt: "Tour planner illustration with destination cards and trip planning layout"
   },
   {
@@ -162,7 +162,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Top-Courses",
     live: "https://topcoursesanandkanil.netlify.app/",
     color: "from-cyan-500 to-blue-500",
-    image: "/images/project-studynotion.svg",
+    image: "/images/project-top-courses.svg",
     imageAlt: "Course platform illustration with lesson cards and category sections"
   },
   {
@@ -172,7 +172,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Gif-Generator",
     live: "https://gifgeneratoranandkanil.netlify.app/",
     color: "from-cyan-500 to-blue-500",
-    image: "/images/project-studynotion.svg",
+    image: "/images/project-gif-generator.svg",
     imageAlt: "GIF generator illustration with animated content and search controls"
   },
   {
@@ -182,7 +182,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Dev-Detective",
     live: "https://devdetectiveanandkanil.netlify.app/",
     color: "from-blue-500 to-indigo-500",
-    image: "/images/project-studynotion.svg",
+    image: "/images/project-dev-detective.svg",
     imageAlt: "GitHub profile search dashboard illustration for Dev Detective"
   },
   {
@@ -192,7 +192,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Weather-App",
     live: "https://weatherappanandkanil.netlify.app/",
     color: "from-cyan-500 to-blue-500",
-    image: "/images/project-ecommerce.svg",
+    image: "/images/project-weather-app.svg",
     imageAlt: "Weather app illustration with forecast cards and climate indicators"
   },
   {
@@ -202,7 +202,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Forms",
     live: "https://formsanandkanil.netlify.app/",
     color: "from-teal-500 to-cyan-500",
-    image: "/images/project-ecommerce.svg",
+    image: "/images/project-forms-app.svg",
     imageAlt: "Forms app illustration with input fields, validation states, and submission flow"
   },
   {
@@ -212,7 +212,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Password-Generator",
     live: "https://passwordgeneratoranandkanil.netlify.app/",
     color: "from-blue-500 to-indigo-500",
-    image: "/images/project-vegetable-store.svg",
+    image: "/images/project-password-generator.svg",
     imageAlt: "Password generator illustration with strength meter and controls"
   },
   {
@@ -222,7 +222,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Tic-Tac-Toe",
     live: "https://tictactoeanandkanil.netlify.app/",
     color: "from-teal-500 to-cyan-500",
-    image: "/images/project-razorpay.svg",
+    image: "/images/project-tic-tac-toe.svg",
     imageAlt: "Tic Tac Toe board illustration with glowing game cells"
   },
   {
@@ -232,7 +232,7 @@ const PROJECTS = [
     github: "https://github.com/Anandkanil/Testimonial",
     live: "https://testimonialanandkanil.netlify.app/",
     color: "from-blue-500 to-indigo-500",
-    image: "/images/project-studynotion.svg",
+    image: "/images/project-testimonial-page.svg",
     imageAlt: "Testimonial page illustration with profile cards and review content"
   },
 ];
