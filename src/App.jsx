@@ -95,6 +95,17 @@ const PROJECTS = [
   },
 
   {
+    title: "Aura (Voice AI Assistant)",
+    description: "Real-time voice AI assistant enabling natural conversations through speech recognition, intelligent AI processing, and voice-based responses.",
+    stack: ["Speech Recognition", "AI Processing", "Voice Synthesis", "Real-time"],
+    github: "https://github.com/Anandkanil/aura",
+    live: "https://auraa-voice.netlify.app/",
+    color: "from-sky-500 to-cyan-500",
+    image: "/images/project-aura.svg",
+    imageAlt: "Aura voice assistant interface illustration with waveform, microphone, and AI response bubbles"
+  },
+
+  {
     title: "Razorpay Landing Page Clone",
     description: "A pixel-perfect static clone of the official Razorpay website built using Tailwind CSS to demonstrate responsive design, layout mastery, and UI replication skills.",
     stack: ["Tailwind CSS", "HTML", "JavaScript"],
