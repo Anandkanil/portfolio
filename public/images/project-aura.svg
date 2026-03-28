@@ -1,4 +1,4 @@
-<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
+﻿<svg width="1200" height="720" viewBox="0 0 1200 720" fill="none" xmlns="http://www.w3.org/2000/svg" role="img" aria-labelledby="title desc">
   <title id="title">Aura Voice AI Assistant</title>
   <desc id="desc">Stylized interface showing a microphone, audio waveform, and conversational AI response cards.</desc>
 
@@ -32,7 +32,6 @@
   <circle cx="120" cy="660" r="260" fill="#012C53" fill-opacity="0.28"/>
 
   <g filter="url(#shadow)">
-    <rect x="150" y="90" width="900" height="540" rx="34" fill="url(#glass)" stroke="rgba(255,255,255,0.34)"/>
   </g>
 
   <rect x="196" y="142" width="808" height="40" rx="12" fill="rgba(255,255,255,0.14)"/>
@@ -69,3 +68,4 @@
 
   <text x="76" y="666" fill="rgba(220,248,255,0.7)" font-size="24" font-family="Segoe UI, Arial, sans-serif" letter-spacing="0.16em">AURA</text>
 </svg>
+
