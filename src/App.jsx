@@ -916,7 +916,6 @@ export default function App() {
                       <div className="absolute inset-0 bg-slate-950/20 group-hover:bg-slate-950/5 transition-colors duration-300"></div>
                       <div className="absolute -inset-y-4 -left-16 w-14 rotate-12 bg-white/20 blur-xl opacity-0 group-hover:translate-x-96 group-hover:opacity-100 transition-all duration-700"></div>
                       <div className="absolute inset-0 bg-linear-to-t from-slate-950/35 via-transparent to-transparent"></div>
-                      <Layout className="absolute inset-0 m-auto w-16 h-16 text-white/60 group-hover:scale-110 group-hover:rotate-6 transition-transform duration-500" />
                     </div>
                     
                     <div className="p-6 flex flex-col flex-1">
