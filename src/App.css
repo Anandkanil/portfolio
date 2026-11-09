@@ -241,3 +241,5 @@ img { max-width: 100%; display: block; }
   .reveal { opacity: 1; transform: none; transition: none; }
   .project-card, .button { transition: none; }
 }
+
+.form-status a { color: inherit; text-decoration: underline; text-underline-offset: 3px; }

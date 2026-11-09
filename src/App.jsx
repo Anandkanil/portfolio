@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import {
   ArrowUpRight, Download, Github, Linkedin, Mail, Menu, Moon, Send, Sun, X,
 } from 'lucide-react';
@@ -7,6 +6,7 @@ import { EXPERIENCE, FEATURED, LINKS, MORE_PROJECTS, NAV, SKILLS } from './data.
 import './App.css';
 
 const EMPTY_FORM = { name: '', email: '', message: '' };
+const FORM_NAME = 'contact'; // must match the hidden form in index.html
 const MORE_PREVIEW_COUNT = 6;
 
 function useTheme() {
@@ -280,37 +280,31 @@ function Contact() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [state, setState] = useState({ status: 'idle', message: '' });
 
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
+  const mailtoHref = `mailto:${LINKS.email}?subject=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent(form.message)}`;
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
+  // Submissions go to Netlify Forms: no keys in the page, spam-filtered by Netlify.
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!serviceId || !templateId || !publicKey) {
-      setState({ status: 'error', message: `The form isn't set up yet. Please email ${LINKS.email} instead.` });
-      return;
-    }
+    const honeypot = e.currentTarget.elements['bot-field']?.value || '';
     setState({ status: 'sending', message: '' });
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          reply_to: form.email,
-          subject: `Portfolio contact from ${form.name}`,
-          message: form.message,
-          to_email: LINKS.email,
-        },
-        { publicKey },
-      );
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': FORM_NAME, 'bot-field': honeypot, ...form }).toString(),
+      });
+      if (!response.ok) {
+        console.error('Contact form failed:', response.status, response.statusText);
+        setState({ status: 'error', kind: response.status >= 500 ? 'network' : 'service', message: '' });
+        return;
+      }
       setForm(EMPTY_FORM);
       setState({ status: 'sent', message: "Thanks — your message is on its way. I'll reply soon." });
-    } catch {
-      setState({ status: 'error', message: `Couldn't send that. Please try again, or email ${LINKS.email}.` });
+    } catch (error) {
+      console.error('Contact form failed:', error);
+      setState({ status: 'error', kind: 'network', message: '' });
     }
   };
 
@@ -328,7 +322,10 @@ function Contact() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={onSubmit}>
+        <form className="contact-form" name={FORM_NAME} onSubmit={onSubmit}>
+          <p className="sr-only" aria-hidden="true">
+            <label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" defaultValue="" /></label>
+          </p>
           <label>
             <span className="mono">name</span>
             <input name="name" value={form.name} onChange={onChange} required autoComplete="name" />
@@ -344,7 +341,15 @@ function Contact() {
           <button type="submit" className="button button-primary" disabled={state.status === 'sending'}>
             <Send size={16} aria-hidden="true" /> {state.status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
-          <p className={`form-status ${state.status}`} role="status" aria-live="polite">{state.message}</p>
+          <p className={`form-status ${state.status}`} role="status" aria-live="polite">
+            {state.message}
+            {state.status === 'error' && state.kind === 'service' && (
+              <>The form isn't working right now, so your message wasn't sent. Please email me at <a href={mailtoHref}>{LINKS.email}</a> instead — your message is copied into the email.</>
+            )}
+            {state.status === 'error' && state.kind === 'network' && (
+              <>Your message couldn't be sent. Check your connection and try again, or email me at <a href={mailtoHref}>{LINKS.email}</a>.</>
+            )}
+          </p>
         </form>
       </div>
     </section>
