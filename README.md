@@ -26,7 +26,7 @@ The site includes:
 • Featured projects (Aura, CollabBoard, StudyNotion) plus 13 more  
 • Experience and education  
 • Skills grouped by area  
-• Contact form (EmailJS) with direct email, LinkedIn and GitHub links  
+• Contact form (Netlify Forms) with direct email, LinkedIn and GitHub links  
 • Light and dark themes (remembered per visitor)  
 • Responsive layout for phone, tablet and desktop, keyboard-friendly and respectful of reduced-motion settings  
 
@@ -37,7 +37,7 @@ The site includes:
 - React 19 + Vite
 - Plain CSS with theme variables (Tailwind is still available)
 - Lucide icons
-- EmailJS for the contact form
+- Netlify Forms for the contact form
 - Netlify hosting
 
 ---
@@ -67,17 +67,11 @@ To add or change a project, edit `src/data.js`.
 
 ---
 
-## 🔑 Environment variables
+## 📮 Contact form
 
-Set these in Netlify (or a local `.env`) for the contact form:
+The form uses **Netlify Forms**: no API keys in the page and no email account connected. Netlify filters spam (Akismet plus a hidden honeypot field), stores submissions under *Forms* in the Netlify dashboard, and can email each one to you (Project configuration → Notifications → Form submission notifications).
 
-| Variable | Purpose |
-| --- | --- |
-| `VITE_EMAILJS_SERVICE_ID` | EmailJS service |
-| `VITE_EMAILJS_TEMPLATE_ID` | EmailJS template |
-| `VITE_EMAILJS_PUBLIC_KEY` | EmailJS public key |
-
-If they're missing, the form tells visitors to email directly instead.
+A hidden copy of the form in `index.html` lets Netlify detect it at deploy time; keep its field names in sync with the form in `src/App.jsx`.
 
 ---
 

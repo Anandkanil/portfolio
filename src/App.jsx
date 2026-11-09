@@ -1,5 +1,4 @@
 import { useEffect, useRef, useState } from 'react';
-import emailjs from '@emailjs/browser';
 import {
   ArrowUpRight, Download, Github, Linkedin, Mail, Menu, Moon, Send, Sun, X,
 } from 'lucide-react';
@@ -7,6 +6,7 @@ import { EXPERIENCE, FEATURED, LINKS, MORE_PROJECTS, NAV, SKILLS } from './data.
 import './App.css';
 
 const EMPTY_FORM = { name: '', email: '', message: '' };
+const FORM_NAME = 'contact'; // must match the hidden form in index.html
 const MORE_PREVIEW_COUNT = 6;
 
 function useTheme() {
@@ -280,44 +280,31 @@ function Contact() {
   const [form, setForm] = useState(EMPTY_FORM);
   const [state, setState] = useState({ status: 'idle', message: '' });
 
-  const serviceId = import.meta.env.VITE_EMAILJS_SERVICE_ID;
-  const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
-  const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
-
   const mailtoHref = `mailto:${LINKS.email}?subject=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent(form.message)}`;
 
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
+  // Submissions go to Netlify Forms: no keys in the page, spam-filtered by Netlify.
   const onSubmit = async (e) => {
     e.preventDefault();
-    if (!serviceId || !templateId || !publicKey) {
-      setState({ status: 'error', kind: 'service', message: '' });
-      return;
-    }
+    const honeypot = e.currentTarget.elements['bot-field']?.value || '';
     setState({ status: 'sending', message: '' });
     try {
-      await emailjs.send(
-        serviceId,
-        templateId,
-        {
-          from_name: form.name,
-          from_email: form.email,
-          reply_to: form.email,
-          subject: `Portfolio contact from ${form.name}`,
-          message: form.message,
-          to_email: LINKS.email,
-        },
-        { publicKey },
-      );
+      const response = await fetch('/', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+        body: new URLSearchParams({ 'form-name': FORM_NAME, 'bot-field': honeypot, ...form }).toString(),
+      });
+      if (!response.ok) {
+        console.error('Contact form failed:', response.status, response.statusText);
+        setState({ status: 'error', kind: response.status >= 500 ? 'network' : 'service', message: '' });
+        return;
+      }
       setForm(EMPTY_FORM);
       setState({ status: 'sent', message: "Thanks — your message is on its way. I'll reply soon." });
     } catch (error) {
-      // EmailJS rejects with { status, text }. 4xx means the email service itself needs
-      // attention (e.g. 412 "reconnect your Gmail account"), so retrying won't help.
-      console.error('Contact form failed:', error?.status, error?.text || error);
-      const status = Number(error?.status) || 0;
-      const serviceProblem = status >= 400 && status < 500 && status !== 429;
-      setState({ status: 'error', kind: serviceProblem ? 'service' : 'network', message: '' });
+      console.error('Contact form failed:', error);
+      setState({ status: 'error', kind: 'network', message: '' });
     }
   };
 
@@ -335,7 +322,10 @@ function Contact() {
           </div>
         </div>
 
-        <form className="contact-form" onSubmit={onSubmit}>
+        <form className="contact-form" name={FORM_NAME} onSubmit={onSubmit}>
+          <p className="sr-only" aria-hidden="true">
+            <label>Leave this empty <input name="bot-field" tabIndex={-1} autoComplete="off" defaultValue="" /></label>
+          </p>
           <label>
             <span className="mono">name</span>
             <input name="name" value={form.name} onChange={onChange} required autoComplete="name" />
