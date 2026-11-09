@@ -284,12 +284,14 @@ function Contact() {
   const templateId = import.meta.env.VITE_EMAILJS_TEMPLATE_ID;
   const publicKey = import.meta.env.VITE_EMAILJS_PUBLIC_KEY;
 
+  const mailtoHref = `mailto:${LINKS.email}?subject=${encodeURIComponent('Hello from your portfolio')}&body=${encodeURIComponent(form.message)}`;
+
   const onChange = (e) => setForm((f) => ({ ...f, [e.target.name]: e.target.value }));
 
   const onSubmit = async (e) => {
     e.preventDefault();
     if (!serviceId || !templateId || !publicKey) {
-      setState({ status: 'error', message: `The form isn't set up yet. Please email ${LINKS.email} instead.` });
+      setState({ status: 'error', kind: 'service', message: '' });
       return;
     }
     setState({ status: 'sending', message: '' });
@@ -309,8 +311,13 @@ function Contact() {
       );
       setForm(EMPTY_FORM);
       setState({ status: 'sent', message: "Thanks — your message is on its way. I'll reply soon." });
-    } catch {
-      setState({ status: 'error', message: `Couldn't send that. Please try again, or email ${LINKS.email}.` });
+    } catch (error) {
+      // EmailJS rejects with { status, text }. 4xx means the email service itself needs
+      // attention (e.g. 412 "reconnect your Gmail account"), so retrying won't help.
+      console.error('Contact form failed:', error?.status, error?.text || error);
+      const status = Number(error?.status) || 0;
+      const serviceProblem = status >= 400 && status < 500 && status !== 429;
+      setState({ status: 'error', kind: serviceProblem ? 'service' : 'network', message: '' });
     }
   };
 
@@ -344,7 +351,15 @@ function Contact() {
           <button type="submit" className="button button-primary" disabled={state.status === 'sending'}>
             <Send size={16} aria-hidden="true" /> {state.status === 'sending' ? 'Sending…' : 'Send message'}
           </button>
-          <p className={`form-status ${state.status}`} role="status" aria-live="polite">{state.message}</p>
+          <p className={`form-status ${state.status}`} role="status" aria-live="polite">
+            {state.message}
+            {state.status === 'error' && state.kind === 'service' && (
+              <>The form isn't working right now, so your message wasn't sent. Please email me at <a href={mailtoHref}>{LINKS.email}</a> instead — your message is copied into the email.</>
+            )}
+            {state.status === 'error' && state.kind === 'network' && (
+              <>Your message couldn't be sent. Check your connection and try again, or email me at <a href={mailtoHref}>{LINKS.email}</a>.</>
+            )}
+          </p>
         </form>
       </div>
     </section>
