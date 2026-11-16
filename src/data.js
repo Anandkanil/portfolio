@@ -34,14 +34,14 @@ export const FEATURED = [
     imageAlt: 'CollabBoard canvas with an Idea, Plan and Launch diagram',
   },
   {
-    file: 'studynotion/README.md',
-    title: 'StudyNotion',
-    description: 'A full-stack learning platform with authentication, course management and secure password recovery.',
-    stack: ['React', 'Node.js', 'Express', 'MongoDB', 'JWT'],
-    github: 'https://github.com/Anandkanil/Study-Notion-Project',
-    live: 'https://studynotion-project-1.netlify.app/',
-    image: '/images/project-studynotion.svg',
-    imageAlt: 'Illustration of the StudyNotion learning dashboard',
+    file: 'nightshift-academy/README.md',
+    title: 'NightShift Academy',
+    description: 'An online course platform: instructors publish video courses, students pay with Razorpay, learn with notes, quizzes and a code playground, and earn certificates anyone can verify. Try it as a student, instructor or admin without signing up.',
+    stack: ['React', 'Express', 'MongoDB', 'Razorpay'],
+    github: 'https://github.com/Anandkanil/NightShift-Academy',
+    live: 'https://nightshift-academy.netlify.app/',
+    image: '/images/nightshift-screenshot.png',
+    imageAlt: 'NightShift Academy home page: "Learn the skills teams hire for" above a student dashboard with a 5-day streak',
   },
 ];
 

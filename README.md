@@ -23,7 +23,7 @@ A developer portfolio with a terminal-inspired design: dark by default with a li
 The site includes:
 
 • Hero with a one-click résumé download  
-• Featured projects (Aura, CollabBoard, StudyNotion) plus 13 more  
+• Featured projects (Aura, CollabBoard, NightShift Academy) plus 13 more  
 • Experience and education  
 • Skills grouped by area  
 • Contact form (Netlify Forms) with direct email, LinkedIn and GitHub links  
@@ -63,7 +63,7 @@ To add or change a project, edit `src/data.js`.
 
 - **Aura** — multilingual voice AI assistant (React, Netlify Functions, Gemini) · [live](https://auraa-voice.netlify.app/)
 - **CollabBoard** — real-time collaborative whiteboard (React, Firebase, Fabric.js) · [live](https://anand-whiteboard.netlify.app/)
-- **StudyNotion** — MERN EdTech platform · [live](https://studynotion-project-1.netlify.app/)
+- **NightShift Academy** — MERN course platform with Razorpay payments, certificates and a code playground · [live](https://nightshift-academy.netlify.app/) · [code](https://github.com/Anandkanil/NightShift-Academy)
 
 ---
 
