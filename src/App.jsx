@@ -149,7 +149,7 @@ function Hero() {
 <span className="tok-key">export const</span> anand = {'{'}{'\n'}
 {'  '}role: <span className="tok-str">"Full-Stack Developer"</span>,{'\n'}
 {'  '}stack: [<span className="tok-str">"React"</span>, <span className="tok-str">"Node"</span>, <span className="tok-str">"Express"</span>, <span className="tok-str">"MongoDB"</span>],{'\n'}
-{'  '}shipping: [<span className="tok-str">"Aura"</span>, <span className="tok-str">"CollabBoard"</span>],{'\n'}
+{'  '}shipping: [<span className="tok-str">"Aura"</span>, <span className="tok-str">"CollabBoard"</span>, <span className="tok-str">"NightShift Academy"</span>],{'\n'}
 {'  '}previously: <span className="tok-str">"TCS · SAP CAR"</span>,{'\n'}
 {'  '}learning: <span className="tok-str">"System design"</span>,{'\n'}
 {'}'};
